@@ -5,6 +5,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { metaReducers, reducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './effects/app.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,7 @@ import { metaReducers, reducers } from './reducers';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

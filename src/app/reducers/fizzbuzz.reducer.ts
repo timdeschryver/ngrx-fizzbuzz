@@ -1,34 +1,26 @@
-import { Action } from '@ngrx/store';
+import {
+  FizzBuzzActionTypes,
+  FizzBuzzActions,
+} from '../actions/fizzbuzz.actions';
 
 export interface State {
   counter: number;
-  message: string;
 }
 
 export const initialState: State = {
   counter: 1,
-  message: '',
 };
 
-export function reducer(state = initialState, action: Action): State {
+export function reducer(state = initialState, action: FizzBuzzActions): State {
   switch (action.type) {
-    case 'NEXT':
-      const counter = state.counter + 1;
-      let message = '';
-
-      if (counter % 3 === 0) {
-        message += 'Fizz';
-      }
-      if (counter % 5 === 0) {
-        message += 'Buzz';
-      }
-
+    case FizzBuzzActionTypes.Next:
       return {
-        counter,
-        message: message || counter.toString(),
+        counter: state.counter + 1,
       };
 
     default:
       return state;
   }
 }
+
+export const getCounter = (state: State) => state.counter;
